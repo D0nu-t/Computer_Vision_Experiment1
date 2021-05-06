@@ -20,7 +20,7 @@ cv2.destroyAllWindows()
 cap = cv2.VideoCapture(0)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-nose_cascade = cv2.CascadeClassifier('./cascade_files/haarcascade_mcs_nose.xml')
+#nose_cascade = cv2.CascadeClassifier('./cascade_files/haarcascade_mcs_nose.xml')
 def convertTuple(tup):
     str =  ''.join(tup)
     return str
@@ -32,10 +32,7 @@ while True:
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    nose_rects = nose_cascade.detectMultiScale(gray, 1.3, 5)
-    for (x,y,w,h) in nose_rects:
-        cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 3)
-        break
+
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 5)
         roi_gray = gray[y:y+w, x:x+w]
